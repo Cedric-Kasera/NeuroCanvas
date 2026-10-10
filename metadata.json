@@ -1,0 +1,6 @@
+{
+  "name": "NeuroCanvas — Visual Neural Network Playground",
+  "description": "Interactive visual neural network builder and simulator. Learn neural networks from first principles with real numbers, step-by-step backpropagation, guided lessons, and free play canvas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
