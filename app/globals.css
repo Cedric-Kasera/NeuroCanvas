@@ -12,6 +12,10 @@
     --surface-dark: #181715;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   html,
   body {
     background-color: #faf9f5;

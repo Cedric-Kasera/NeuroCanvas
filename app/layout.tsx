@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { PWAInstallBanner } from '@/components/ui/PWAInstallBanner';
 
 export const viewport: Viewport = {
   themeColor: '#cc785c',
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased font-sans bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#faf9f5] min-h-screen" suppressHydrationWarning>
         {children}
+        <PWAInstallBanner />
       </body>
     </html>
   );

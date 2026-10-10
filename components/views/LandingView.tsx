@@ -55,7 +55,7 @@ export function LandingView() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#faf9f5] flex flex-col select-none relative overflow-x-hidden overflow-y-auto font-sans">
+    <div className="min-h-screen w-full bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#faf9f5] flex flex-col relative overflow-x-hidden font-sans">
       {/* Geometric Rune Grid Lines Background Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04] dark:opacity-[0.07] bg-[radial-gradient(#141413_1px,transparent_1px)] dark:bg-[radial-gradient(#faf9f5_1px,transparent_1px)] [background-size:24px_24px]" />
 
@@ -593,15 +593,28 @@ export function LandingView() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[#e6dfd8] dark:border-[#2a2926] bg-[#faf9f5] dark:bg-[#141413] text-[#8e8b82] py-8 px-6 text-xs font-mono">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-[#e6dfd8] dark:border-[#2a2926] bg-[#faf9f5] dark:bg-[#141413] text-[#8e8b82] py-10 px-6 text-xs font-mono">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3 text-[#141413] dark:text-[#faf9f5]">
-            <AppLogo className="h-5 w-auto" />
-            <span className="font-serif font-bold text-sm">NeuroCanvas</span>
+            <AppLogo className="h-6 w-auto" />
+            <span className="font-serif font-bold text-base">NeuroCanvas</span>
             <span className="text-[#8e8b82]">· Visual Deep Learning Studio</span>
           </div>
-          <p className="text-[11px] text-center sm:text-right">
-            Client-Side Mathematical Engine. Built with React Flow & Next.js.
+
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs">
+            <span>Created by <strong className="text-[#141413] dark:text-[#faf9f5]">Cedric Kasera</strong></span>
+            <span className="hidden sm:inline">·</span>
+            <a href="mailto:omarkasera50@gmail.com" className="hover:text-[#cc785c] transition-colors underline">
+              omarkasera50@gmail.com
+            </a>
+            <span className="hidden sm:inline">·</span>
+            <a href="tel:+254757835421" className="hover:text-[#cc785c] transition-colors underline">
+              +254757835421
+            </a>
+          </div>
+
+          <p className="text-[11px] text-center md:text-right">
+            Open Source (Free to use, host & commercialize) · Proprietary resale prohibited.
           </p>
         </div>
       </footer>
