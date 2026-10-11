@@ -13,7 +13,24 @@ interface UIStoreState {
   rightTab: 'inspector' | 'lesson';
   mode: 'beginner' | 'student';
   theme: 'light' | 'dark';
-  currentRoute: 'landing' | 'learn' | 'play';
+  currentRoute:
+    | 'landing'
+    | 'learn'
+    | 'play'
+    | 'projects'
+    | 'project-detail'
+    | 'teach'
+    | 'verify'
+    | 'lab'
+    | 'experiment-detail'
+    | 'games'
+    | 'daily'
+    | 'assignment';
+  activeProjectId?: string;
+  activeExperimentId?: string;
+  activeAssignmentPayload?: string;
+  activeCanvasMode?: 'free' | 'project' | 'experiment' | 'assignment' | 'game';
+  activeCanvasTitle?: string;
   isMobileDrawerOpen: boolean;
   isMobileSheetOpen: boolean;
 
@@ -32,7 +49,27 @@ interface UIStoreState {
   setRightTab: (tab: 'inspector' | 'lesson') => void;
   setMode: (mode: 'beginner' | 'student') => void;
   setTheme: (theme: 'light' | 'dark') => void;
-  setCurrentRoute: (route: 'landing' | 'learn' | 'play') => void;
+  setCurrentRoute: (
+    route:
+      | 'landing'
+      | 'learn'
+      | 'play'
+      | 'projects'
+      | 'project-detail'
+      | 'teach'
+      | 'verify'
+      | 'lab'
+      | 'experiment-detail'
+      | 'games'
+      | 'daily'
+      | 'assignment'
+  ) => void;
+  setActiveProjectId: (id?: string) => void;
+  setActiveExperimentId: (id?: string) => void;
+  setActiveAssignmentPayload: (payload?: string) => void;
+  setActiveCanvasMode: (mode?: 'free' | 'project' | 'experiment' | 'assignment' | 'game', title?: string) => void;
+  openProject: (id: string) => void;
+  openExperiment: (id: string) => void;
   setMobileDrawerOpen: (open: boolean) => void;
   setMobileSheetOpen: (open: boolean) => void;
   setShortcutsModalOpen: (open: boolean) => void;
@@ -78,6 +115,12 @@ export const useUIStore = create<UIStoreState>((set, get) => ({
     }
   },
   setCurrentRoute: (route) => set({ currentRoute: route }),
+  setActiveProjectId: (id) => set({ activeProjectId: id }),
+  setActiveExperimentId: (id) => set({ activeExperimentId: id }),
+  setActiveAssignmentPayload: (payload) => set({ activeAssignmentPayload: payload }),
+  setActiveCanvasMode: (mode = 'free', title) => set({ activeCanvasMode: mode, activeCanvasTitle: title }),
+  openProject: (id) => set({ activeProjectId: id, currentRoute: 'project-detail' }),
+  openExperiment: (id) => set({ activeExperimentId: id, currentRoute: 'experiment-detail' }),
   setMobileDrawerOpen: (open) => set({ isMobileDrawerOpen: open }),
   setMobileSheetOpen: (open) => set({ isMobileSheetOpen: open }),
   setShortcutsModalOpen: (open) => set({ shortcutsModalOpen: open }),

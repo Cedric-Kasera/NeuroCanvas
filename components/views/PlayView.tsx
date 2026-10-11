@@ -6,6 +6,7 @@ import { LeftSidebar } from '@/components/sidebars/LeftSidebar';
 import { RightSidebar } from '@/components/sidebars/RightSidebar';
 import { CanvasView } from '@/components/canvas/CanvasView';
 import { SimulationBar } from '@/components/canvas/SimulationBar';
+import { ActivityHUD } from '@/components/canvas/ActivityHUD';
 import { ShortcutsModal } from '@/components/ui/ShortcutsModal';
 import { ShareModal } from '@/components/ui/ShareModal';
 import { ExportModal } from '@/components/ui/ExportModal';
@@ -122,6 +123,7 @@ export function PlayView() {
 
         {/* Center Canvas Area */}
         <main className="flex-1 relative h-full w-full overflow-hidden bg-[#faf9f5] dark:bg-[#141413]">
+          <ActivityHUD />
           <CanvasView />
           <SimulationBar />
 

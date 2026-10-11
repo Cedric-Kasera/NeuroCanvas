@@ -71,29 +71,49 @@ export function LandingView() {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 text-xs font-medium">
+        <div className="flex items-center gap-2 text-xs font-medium">
           <button
             onClick={() => setCurrentRoute('learn')}
-            className="px-3 py-1.5 rounded-lg text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413] dark:hover:text-[#faf9f5] hover:bg-[#efe9de]/50 dark:hover:bg-[#252320]/50 transition-colors flex items-center gap-1.5"
+            className="px-2.5 py-1.5 rounded-lg text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413] dark:hover:text-[#faf9f5] hover:bg-[#efe9de]/50 dark:hover:bg-[#252320]/50 transition-colors flex items-center gap-1"
           >
             <BookOpen size={13} />
             <span>Curriculum</span>
           </button>
           <button
-            onClick={() => setCurrentRoute('play')}
-            className="px-3 py-1.5 rounded-lg text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413] dark:hover:text-[#faf9f5] hover:bg-[#efe9de]/50 dark:hover:bg-[#252320]/50 transition-colors flex items-center gap-1.5"
+            onClick={() => setCurrentRoute('projects')}
+            className="px-2.5 py-1.5 rounded-lg text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413] dark:hover:text-[#faf9f5] hover:bg-[#efe9de]/50 dark:hover:bg-[#252320]/50 transition-colors flex items-center gap-1"
+          >
+            <Award size={13} className="text-[#cc785c]" />
+            <span>Projects</span>
+          </button>
+          <button
+            onClick={() => setCurrentRoute('lab')}
+            className="px-2.5 py-1.5 rounded-lg text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413] dark:hover:text-[#faf9f5] hover:bg-[#efe9de]/50 dark:hover:bg-[#252320]/50 transition-colors flex items-center gap-1"
+          >
+            <Zap size={13} className="text-[#cc785c]" />
+            <span>Lab</span>
+          </button>
+          <button
+            onClick={() => setCurrentRoute('games')}
+            className="px-2.5 py-1.5 rounded-lg text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413] dark:hover:text-[#faf9f5] hover:bg-[#efe9de]/50 dark:hover:bg-[#252320]/50 transition-colors flex items-center gap-1"
           >
             <Sparkles size={13} className="text-[#5db8a6]" />
-            <span>Studio Canvas</span>
+            <span>Games</span>
+          </button>
+          <button
+            onClick={() => setCurrentRoute('play')}
+            className="hidden sm:flex px-2.5 py-1.5 rounded-lg text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413] dark:hover:text-[#faf9f5] hover:bg-[#efe9de]/50 dark:hover:bg-[#252320]/50 transition-colors items-center gap-1"
+          >
+            <span>Studio</span>
           </button>
           <button
             onClick={() => {
               startLesson('lesson-01-neuron');
               setCurrentRoute('play');
             }}
-            className="px-4 py-1.5 rounded-xl bg-[#cc785c] hover:bg-[#a9583e] text-white text-xs font-semibold transition-all shadow-xs flex items-center gap-1.5 hover:scale-[1.02] active:scale-[0.98]"
+            className="px-3.5 py-1.5 rounded-xl bg-[#cc785c] hover:bg-[#a9583e] text-white text-xs font-semibold transition-all shadow-xs flex items-center gap-1 hover:scale-[1.02] active:scale-[0.98]"
           >
-            <span>Start Lesson 1</span>
+            <span>Start</span>
             <ArrowRight size={13} />
           </button>
         </div>
@@ -118,25 +138,41 @@ export function LandingView() {
             Construct deep networks on an infinite reactive canvas. Inspect every forward tensor product, trace chain-rule backpropagation, and organize layers with breathable visual frames.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <button
               onClick={() => {
                 startLesson('lesson-01-neuron');
                 setCurrentRoute('play');
               }}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#cc785c] hover:bg-[#a9583e] text-white font-semibold text-sm shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#cc785c] hover:bg-[#a9583e] text-white font-semibold text-xs shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              <BookOpen size={16} />
-              <span>Begin Guided Curriculum</span>
-              <ArrowRight size={15} />
+              <BookOpen size={15} />
+              <span>Begin Curriculum</span>
+              <ArrowRight size={14} />
             </button>
 
             <button
-              onClick={() => setCurrentRoute('play')}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-[#1f1e1b] border border-[#e6dfd8] dark:border-[#383531] hover:border-[#cc785c] text-[#141413] dark:text-[#faf9f5] font-semibold text-sm transition-all shadow-2xs hover:scale-[1.02] active:scale-[0.98]"
+              onClick={() => setCurrentRoute('projects')}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#1f1e1b] border border-[#e6dfd8] dark:border-[#383531] hover:border-[#cc785c] text-[#141413] dark:text-[#faf9f5] font-semibold text-xs transition-all shadow-2xs hover:scale-[1.02] active:scale-[0.98]"
             >
-              <Grid size={15} className="text-[#5db8a6]" />
-              <span>Open Free Canvas</span>
+              <Award size={15} className="text-[#cc785c]" />
+              <span>Projects & Assignments</span>
+            </button>
+
+            <button
+              onClick={() => setCurrentRoute('lab')}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#1f1e1b] border border-[#e6dfd8] dark:border-[#383531] hover:border-[#cc785c] text-[#141413] dark:text-[#faf9f5] font-semibold text-xs transition-all shadow-2xs hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <Zap size={15} className="text-[#cc785c]" />
+              <span>Experiment Lab</span>
+            </button>
+
+            <button
+              onClick={() => setCurrentRoute('games')}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#1f1e1b] border border-[#e6dfd8] dark:border-[#383531] hover:border-[#cc785c] text-[#141413] dark:text-[#faf9f5] font-semibold text-xs transition-all shadow-2xs hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <Sparkles size={15} className="text-[#5db8a6]" />
+              <span>Games & Daily</span>
             </button>
           </div>
 

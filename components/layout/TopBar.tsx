@@ -12,6 +12,8 @@ import {
   Menu,
   BookOpen,
   Sparkles,
+  Award,
+  Flame,
   ChevronDown,
 } from 'lucide-react';
 import { useCanvasStore } from '@/lib/state/canvasStore';
@@ -89,7 +91,7 @@ export function TopBar() {
         <div className="flex items-center bg-[#efe9de] dark:bg-[#252320] rounded-xl p-0.5 text-xs font-medium">
           <button
             onClick={() => setCurrentRoute('learn')}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
               currentRoute === 'learn'
                 ? 'bg-white dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] shadow-xs'
                 : 'text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413]'
@@ -97,6 +99,39 @@ export function TopBar() {
           >
             <BookOpen size={13} className="text-[#cc785c]" />
             <span>Lessons</span>
+          </button>
+          <button
+            onClick={() => setCurrentRoute('projects')}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
+              currentRoute === 'projects' || currentRoute === 'project-detail'
+                ? 'bg-white dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] shadow-xs'
+                : 'text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413]'
+            }`}
+          >
+            <Award size={13} className="text-[#cc785c]" />
+            <span>Projects</span>
+          </button>
+          <button
+            onClick={() => setCurrentRoute('lab')}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
+              currentRoute === 'lab' || currentRoute === 'experiment-detail'
+                ? 'bg-white dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] shadow-xs'
+                : 'text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413]'
+            }`}
+          >
+            <Flame size={13} className="text-[#cc785c]" />
+            <span>Lab</span>
+          </button>
+          <button
+            onClick={() => setCurrentRoute('games')}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
+              currentRoute === 'games'
+                ? 'bg-white dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] shadow-xs'
+                : 'text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413]'
+            }`}
+          >
+            <Sparkles size={13} className="text-[#5db8a6]" />
+            <span>Games</span>
           </button>
           <button
             onClick={() => {
@@ -116,14 +151,13 @@ export function TopBar() {
               useSimStore.getState().buildFromCanvas();
               setCurrentRoute('play');
             }}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-colors ${
               currentRoute === 'play'
                 ? 'bg-white dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] shadow-xs'
                 : 'text-[#6c6a64] dark:text-[#a09d96] hover:text-[#141413]'
             }`}
           >
-            <Sparkles size={13} className="text-[#5db8a6]" />
-            <span>Free Play</span>
+            <span>Studio</span>
           </button>
         </div>
 

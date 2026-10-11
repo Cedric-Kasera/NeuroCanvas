@@ -77,15 +77,15 @@ export function canvasToNetwork(nodes: Node[], edges: Edge[], layers: Layer[] = 
   const netNodes: NetNode[] = [];
 
   for (const n of nodes) {
-    if (n.type === 'inputNode') {
-      const val = Number(n.data?.value ?? 1.0);
+    if (n.type === 'inputNode' || n.type === 'input') {
+      const val = Number(n.data?.value ?? (n.data as any)?.inputValue ?? 1.0);
       netNodes.push({
         id: n.id,
         kind: 'input',
         label: (n.data?.label as string) || n.id,
         inputValue: val,
       });
-    } else if (n.type === 'neuronNode') {
+    } else if (n.type === 'neuronNode' || n.type === 'neuron') {
       netNodes.push({
         id: n.id,
         kind: 'neuron',
@@ -93,21 +93,21 @@ export function canvasToNetwork(nodes: Node[], edges: Edge[], layers: Layer[] = 
         bias: Number(n.data?.bias ?? 0.0),
         activation: (n.data?.activation as any) || 'sigmoid',
       });
-    } else if (n.type === 'activationNode') {
+    } else if (n.type === 'activationNode' || n.type === 'activation') {
       netNodes.push({
         id: n.id,
         kind: 'activation',
         label: (n.data?.label as string) || n.id,
         activation: (n.data?.activation as any) || 'sigmoid',
       });
-    } else if (n.type === 'outputNode') {
+    } else if (n.type === 'outputNode' || n.type === 'output') {
       netNodes.push({
         id: n.id,
         kind: 'output',
         label: (n.data?.label as string) || n.id,
         target: n.data?.target !== undefined ? Number(n.data.target) : undefined,
       });
-    } else if (n.type === 'lossNode') {
+    } else if (n.type === 'lossNode' || n.type === 'loss') {
       netNodes.push({
         id: n.id,
         kind: 'loss',

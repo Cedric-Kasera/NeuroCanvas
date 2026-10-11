@@ -47,10 +47,15 @@ import { Plus, Cpu, ArrowRightCircle, CheckCircle, Zap, Layers, Grid } from 'luc
 
 const nodeTypes = {
   inputNode: InputNode,
+  input: InputNode,
   neuronNode: NeuronNode,
+  neuron: NeuronNode,
   activationNode: ActivationNode,
+  activation: ActivationNode,
   outputNode: OutputNode,
+  output: OutputNode,
   lossNode: LossNode,
+  loss: LossNode,
   datasetNode: DatasetNode,
   activationPlotCard: ActivationPlotCard,
   decisionBoundaryCard: DecisionBoundaryCard,
@@ -68,6 +73,7 @@ const nodeTypes = {
 
 const edgeTypes = {
   weightedEdge: WeightedEdge,
+  default: WeightedEdge,
 };
 
 function InnerCanvas() {

@@ -12,11 +12,55 @@ export interface SettingsRow {
   value: any;
 }
 
+export interface ProjectProgressRow {
+  projectId: string;
+  version: number;
+  canvas: SerializedCanvas;
+  tierBest?: 'bronze' | 'silver' | 'gold' | null;
+  startedAt: string;
+  completedAt?: string;
+  completionCode?: string;
+}
+
+export interface ReflectionRow {
+  id: string; // `${projectId}_${reflectionId}`
+  projectId: string;
+  reflectionId: string;
+  text: string;
+  updatedAt: string;
+}
+
+export interface GameStatRow {
+  game: string;
+  plays: number;
+  bestStars: number;
+  lastPlayed: string;
+}
+
+export interface DailyResultRow {
+  dateKey: string;
+  stars: number;
+  completedAt: string;
+}
+
+export interface ExperimentProgressRow {
+  experimentId: string;
+  completed: boolean;
+  completedAt?: string;
+}
+
 export class NeuroCanvasDB extends Dexie {
   canvases!: Table<SerializedCanvas, string>;
   autosave!: Table<AutosaveRow, string>;
   lessonProgress!: Table<LessonProgress, string>;
   settings!: Table<SettingsRow, string>;
+  projectProgress!: Table<ProjectProgressRow, string>;
+  runRecords!: Table<any, number>;
+  reflections!: Table<ReflectionRow, string>;
+  assignments!: Table<any, string>;
+  gameStats!: Table<GameStatRow, string>;
+  dailyResults!: Table<DailyResultRow, string>;
+  experimentProgress!: Table<ExperimentProgressRow, string>;
 
   constructor() {
     super('neurocanvas_db');
@@ -25,6 +69,15 @@ export class NeuroCanvasDB extends Dexie {
       autosave: 'key',
       lessonProgress: 'lessonId',
       settings: 'key',
+    });
+    this.version(2).stores({
+      projectProgress: 'projectId',
+      runRecords: '++id, projectId, ts',
+      reflections: 'id, projectId',
+      assignments: 'id',
+      gameStats: 'game',
+      dailyResults: 'dateKey',
+      experimentProgress: 'experimentId',
     });
   }
 }
