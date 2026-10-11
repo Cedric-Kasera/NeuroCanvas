@@ -95,10 +95,17 @@ export function DailyStreak() {
           }
         }
 
-        // Fallback to at least 1 or store streak
-        const effectiveStreak = Math.max(currentConsecutive, dailyStreak || 1);
+        // Real streak calculation
+        const effectiveStreak = currentConsecutive;
         setDbStreak(effectiveStreak);
-        setLongestStreak((prev) => Math.max(prev, effectiveStreak + 4));
+
+        // Calculate and persist real longest streak
+        const storedLongest = typeof window !== 'undefined' ? parseInt(localStorage.getItem('neurocanvas_longest_streak') || '0', 10) : 0;
+        const actualLongest = Math.max(storedLongest, effectiveStreak);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('neurocanvas_longest_streak', String(actualLongest));
+        }
+        setLongestStreak(actualLongest);
         setCompletedDaysMap(map);
 
         // Load daily tasks completion
@@ -169,8 +176,8 @@ export function DailyStreak() {
       const dayShort = d.toLocaleDateString('en-US', { weekday: 'short' }); // Mon, Tue...
       const isToday = i === 0;
       const isCompleted = isToday
-        ? (completedDaysMap[info.dateKey] || dailyCompleted)
-        : !!completedDaysMap[info.dateKey] || (i <= dbStreak && i > 0); // simulate past streak if recorded
+        ? (!!completedDaysMap[info.dateKey] || dailyCompleted)
+        : !!completedDaysMap[info.dateKey];
 
       arr.push({
         dateKey: info.dateKey,
@@ -181,7 +188,7 @@ export function DailyStreak() {
       });
     }
     return arr;
-  }, [completedDaysMap, dailyCompleted, dbStreak]);
+  }, [completedDaysMap, dailyCompleted]);
 
   // Handle task launch or manual check-off
   const handleLaunchTask = async (task: DailyTask) => {

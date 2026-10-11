@@ -10,7 +10,7 @@ interface UIStoreState {
   leftOpen: boolean;
   rightOpen: boolean;
   leftTab: 'network' | 'layers' | 'concepts' | 'templates' | 'saved';
-  rightTab: 'inspector' | 'lesson';
+  rightTab: 'inspector' | 'lesson' | 'activity';
   mode: 'beginner' | 'student';
   theme: 'light' | 'dark';
   currentRoute:
@@ -46,7 +46,7 @@ interface UIStoreState {
   setLeftOpen: (open: boolean) => void;
   setRightOpen: (open: boolean) => void;
   setLeftTab: (tab: 'network' | 'layers' | 'concepts' | 'templates' | 'saved') => void;
-  setRightTab: (tab: 'inspector' | 'lesson') => void;
+  setRightTab: (tab: 'inspector' | 'lesson' | 'activity') => void;
   setMode: (mode: 'beginner' | 'student') => void;
   setTheme: (theme: 'light' | 'dark') => void;
   setCurrentRoute: (
@@ -118,7 +118,13 @@ export const useUIStore = create<UIStoreState>((set, get) => ({
   setActiveProjectId: (id) => set({ activeProjectId: id }),
   setActiveExperimentId: (id) => set({ activeExperimentId: id }),
   setActiveAssignmentPayload: (payload) => set({ activeAssignmentPayload: payload }),
-  setActiveCanvasMode: (mode = 'free', title) => set({ activeCanvasMode: mode, activeCanvasTitle: title }),
+  setActiveCanvasMode: (mode = 'free', title) =>
+    set({
+      activeCanvasMode: mode,
+      activeCanvasTitle: title,
+      rightOpen: mode !== 'free' ? true : true,
+      rightTab: mode !== 'free' ? 'activity' : 'inspector',
+    }),
   openProject: (id) => set({ activeProjectId: id, currentRoute: 'project-detail' }),
   openExperiment: (id) => set({ activeExperimentId: id, currentRoute: 'experiment-detail' }),
   setMobileDrawerOpen: (open) => set({ isMobileDrawerOpen: open }),

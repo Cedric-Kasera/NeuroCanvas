@@ -71,12 +71,31 @@ export function PlayView() {
 
     // 3. Canvas loading strategy
     const initStorage = async () => {
+      const activeCanvasMode = useUIStore.getState().activeCanvasMode;
+      const currentNodes = useCanvasStore.getState().nodes;
+
+      // If learner navigated here from an activity (project, assignment, experiment, game),
+      // the canvas was already populated with the activity network.
+      // Retain it completely to prevent nodes flickering or disappearing!
+      if (activeCanvasMode && activeCanvasMode !== 'free') {
+        useUIStore.getState().setRightOpen(true);
+        useUIStore.getState().setRightTab('activity');
+        buildFromCanvas();
+        return;
+      }
+
       const lesson = useLessonStore.getState().getCurrentLesson();
       if (lesson) {
         // In lesson: load current step's progressive canvas
         const currentStep = useLessonStore.getState().getCurrentStep();
         loadCanvas(currentStep?.stepCanvas || lesson.startCanvas);
       } else {
+        // If the canvas already has nodes loaded in memory, keep them!
+        if (currentNodes && currentNodes.length > 0) {
+          buildFromCanvas();
+          return;
+        }
+
         // In Free Play: canvas is empty UNLESS user loads a saved canvas
         const autosaved = await loadAutosave();
         if (

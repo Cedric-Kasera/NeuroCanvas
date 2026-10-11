@@ -198,6 +198,8 @@ function ExperimentDetailContent({ experiment }: { experiment: ExperimentDefinit
               useCanvasStore.getState().loadCanvas(activeCanvas);
               useSimStore.getState().buildFromCanvas();
               useUIStore.getState().setActiveCanvasMode('experiment', experiment.title);
+              useUIStore.getState().setRightOpen(true);
+              useUIStore.getState().setRightTab('activity');
               setCurrentRoute('play');
               showToast(`Opened ${experiment.title} in Studio Canvas!`, 'success');
             }}

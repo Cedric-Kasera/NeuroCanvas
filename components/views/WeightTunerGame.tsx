@@ -57,6 +57,8 @@ export function WeightTunerGame() {
               useCanvasStore.getState().loadCanvas(canvas);
               useSimStore.getState().buildFromCanvas();
               useUIStore.getState().setActiveCanvasMode('game', `Weight Tuner (Target: ${level.targetOutput})`);
+              useUIStore.getState().setRightOpen(true);
+              useUIStore.getState().setRightTab('activity');
               useUIStore.getState().setCurrentRoute('play');
               useUIStore.getState().showToast('Opened Weight Tuner puzzle on Studio Canvas!', 'info');
             }}

@@ -148,10 +148,52 @@ export function AssignmentView() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => {
+              const freshCanvas = {
+                app: 'neurocanvas',
+                schemaVersion: 2,
+                name: `${assignmentData.title} - Fresh Workspace`,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                viewport: { x: 80, y: 100, zoom: 1 },
+                settings: { mode: 'beginner', snap: true, grid: true, minimap: false, precision: 2 },
+                nodes: [
+                  { id: 'in_1', type: 'inputNode', position: { x: 100, y: 120 }, data: { label: 'Input x₁', value: 0, inputValue: 0 } },
+                  { id: 'in_2', type: 'inputNode', position: { x: 100, y: 260 }, data: { label: 'Input x₂', value: 0, inputValue: 0 } },
+                  { id: 'n_out', type: 'neuronNode', position: { x: 360, y: 190 }, data: { label: 'Neuron', bias: 0.0, activation: 'sigmoid' } },
+                  { id: 'target', type: 'outputNode', position: { x: 600, y: 190 }, data: { label: 'Output', target: 0 } },
+                ],
+                edges: [
+                  { id: 'e1', source: 'in_1', target: 'n_out', data: { weight: 0.5 }, type: 'weightedEdge' },
+                  { id: 'e2', source: 'in_2', target: 'n_out', data: { weight: 0.5 }, type: 'weightedEdge' },
+                  { id: 'e3', source: 'n_out', target: 'target', data: { weight: 1.0 }, type: 'weightedEdge' },
+                ],
+                layers: [],
+              };
+              setCustomCanvas(freshCanvas);
+              useCanvasStore.getState().loadCanvas(freshCanvas as any);
+              useSimStore.getState().buildFromCanvas();
+              useUIStore.getState().setActiveCanvasMode('assignment', assignmentData.title);
+              useUIStore.getState().setRightOpen(true);
+              useUIStore.getState().setRightTab('activity');
+              setCurrentRoute('play');
+              showToast('Started fresh canvas for assignment!', 'success');
+            }}
+            className="px-3 py-1.5 rounded-xl border border-[#e6dfd8] dark:border-[#383531] hover:bg-[#efe9de] dark:hover:bg-[#252320] text-xs font-semibold flex items-center gap-1.5 transition-colors"
+            title="Start in a fresh new canvas for this assignment"
+          >
+            <RotateCcw size={13} />
+            <span className="hidden sm:inline">Start Fresh Canvas</span>
+            <span className="sm:hidden">New</span>
+          </button>
+
+          <button
+            onClick={() => {
               if (activeCanvas) {
                 useCanvasStore.getState().loadCanvas(activeCanvas);
                 useSimStore.getState().buildFromCanvas();
                 useUIStore.getState().setActiveCanvasMode('assignment', assignmentData.title);
+                useUIStore.getState().setRightOpen(true);
+                useUIStore.getState().setRightTab('activity');
                 setCurrentRoute('play');
                 showToast(`Opened ${assignmentData.title} in Studio Canvas!`, 'success');
               }

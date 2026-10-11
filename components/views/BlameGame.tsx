@@ -51,6 +51,8 @@ export function BlameGame() {
               useCanvasStore.getState().loadCanvas(canvas);
               useSimStore.getState().buildFromCanvas();
               useUIStore.getState().setActiveCanvasMode('game', 'The Blame Game - Backprop Flow');
+              useUIStore.getState().setRightOpen(true);
+              useUIStore.getState().setRightTab('activity');
               useUIStore.getState().setCurrentRoute('play');
               useUIStore.getState().showToast('Loaded Blame Game network on Studio Canvas!', 'info');
             }}
